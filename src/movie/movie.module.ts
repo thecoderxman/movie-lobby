@@ -8,8 +8,9 @@ import { AuthModule } from 'src/auth/auth.module';
 @Module({
   imports: [
     AuthModule,
-    MongooseModule.forFeature([{name: 'Movie' , schema: MovieSchema}])],
+    MongooseModule.forFeature([{ name: 'Movie', schema: MovieSchema }]),
+  ],
   providers: [MovieService],
-  controllers: [MovieController]
+  controllers: [MovieController],
 })
 export class MovieModule {}

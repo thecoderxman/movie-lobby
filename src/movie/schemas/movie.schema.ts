@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
 @Schema({
-  timestamps: true
+  timestamps: true,
 })
 export class Movie {
   @Prop()
@@ -12,7 +12,6 @@ export class Movie {
   rating: number;
   @Prop()
   streamingLink: string;
-};
-
+}
 
 export const MovieSchema = SchemaFactory.createForClass(Movie);

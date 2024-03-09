@@ -8,14 +8,13 @@ import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(
-      {
-        envFilePath : '.env',
-        isGlobal : true
-      }),
+    ConfigModule.forRoot({
+      envFilePath: '.env',
+      isGlobal: true,
+    }),
     MongooseModule.forRoot(process.env.DB_URI),
     MovieModule,
-    AuthModule
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

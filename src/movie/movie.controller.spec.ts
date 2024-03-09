@@ -16,7 +16,7 @@ describe('MovieController', () => {
         MovieService,
         {
           provide: getModelToken(Movie.name),
-          useValue: Model, 
+          useValue: Model,
         },
       ],
     }).compile();
@@ -28,8 +28,18 @@ describe('MovieController', () => {
   describe('GET /movies', () => {
     it('should return an array of movies', async () => {
       const result: Movie[] = [
-        { title: 'Inception', genre: 'Sci-Fi', rating: 8.8, streamingLink: 'example-link' },
-        { title: 'The Shawshank Redemption', genre: 'Drama', rating: 9.3, streamingLink: 'example-link' },
+        {
+          title: 'Inception',
+          genre: 'Sci-Fi',
+          rating: 8.8,
+          streamingLink: 'example-link',
+        },
+        {
+          title: 'The Shawshank Redemption',
+          genre: 'Drama',
+          rating: 9.3,
+          streamingLink: 'example-link',
+        },
       ];
       jest.spyOn(service, 'findAll').mockResolvedValue(result);
 
@@ -41,7 +51,12 @@ describe('MovieController', () => {
     it('should return an array of movies based on search query', async () => {
       const query = 'Inception';
       const result: Movie[] = [
-        { title: 'Inception', genre: 'Sci-Fi', rating: 8.8, streamingLink: 'example-link' },
+        {
+          title: 'Inception',
+          genre: 'Sci-Fi',
+          rating: 8.8,
+          streamingLink: 'example-link',
+        },
       ];
       jest.spyOn(service, 'search').mockResolvedValue(result);
 
@@ -51,7 +66,12 @@ describe('MovieController', () => {
 
   describe('POST /movies', () => {
     it('should create a new movie', async () => {
-      const movie: Movie = { title: 'Inception', genre: 'Sci-Fi', rating: 8.8, streamingLink: 'example-link' };
+      const movie: Movie = {
+        title: 'Inception',
+        genre: 'Sci-Fi',
+        rating: 8.8,
+        streamingLink: 'example-link',
+      };
       jest.spyOn(service, 'create').mockResolvedValue(movie);
 
       expect(await controller.create(movie)).toEqual(movie);
@@ -62,7 +82,12 @@ describe('MovieController', () => {
     it('should update a movie', async () => {
       const movieId = 'abc123';
       const updatedMovie: Partial<Movie> = { rating: 9.0 };
-      const result: Movie = { title: 'Inception', genre: 'Sci-Fi', rating: 9.0, streamingLink: 'example-link' };
+      const result: Movie = {
+        title: 'Inception',
+        genre: 'Sci-Fi',
+        rating: 9.0,
+        streamingLink: 'example-link',
+      };
       jest.spyOn(service, 'update').mockResolvedValue(result);
 
       expect(await controller.update(movieId, updatedMovie)).toEqual(result);
@@ -72,7 +97,12 @@ describe('MovieController', () => {
   describe('DELETE /movies/:id', () => {
     it('should delete a movie', async () => {
       const movieId = 'abc123';
-      const result: Movie = { title: 'Inception', genre: 'Sci-Fi', rating: 8.8, streamingLink: 'example-link' };
+      const result: Movie = {
+        title: 'Inception',
+        genre: 'Sci-Fi',
+        rating: 8.8,
+        streamingLink: 'example-link',
+      };
       jest.spyOn(service, 'remove').mockResolvedValue(result);
 
       expect(await controller.delete(movieId)).toEqual(result);
@@ -80,6 +110,6 @@ describe('MovieController', () => {
   });
 
   afterAll(async () => {
-    await new Promise<void>(resolve => setTimeout(() => resolve(), 500));
+    await new Promise<void>((resolve) => setTimeout(() => resolve(), 500));
   });
 });

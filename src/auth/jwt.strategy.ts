@@ -20,14 +20,16 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   async validate(payload) {
     const { username } = payload;
 
-    const user = await this.userModel.findOne({username : username}).lean();
+    const user = await this.userModel.findOne({ username: username }).lean();
 
     if (!user) {
       throw new UnauthorizedException('Login first to access this endpoint.');
     }
 
     if (user.role !== 'admin') {
-      throw new UnauthorizedException('You do not have permission to access this endpoint.');
+      throw new UnauthorizedException(
+        'You do not have permission to access this endpoint.',
+      );
     }
 
     return user;
